@@ -10,6 +10,17 @@
 </head>
 
 <body class="bg-gray-100">
+    <header class="bg-blue-500 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div>
+                <span>BIENVENIDO {{ strtoupper(auth()->user()->nombre) }}</span>
+            </div>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="text-white hover:underline">Salir</button>
+            </form>
+        </div>
+    </header>
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-semibold mb-4">Tabla de Usuarios</h1>
         <div class="mb-4">
@@ -40,7 +51,7 @@
                         <th class="px-4 py-2 bg-gray-200 text-left">Correo</th>
                         <th class="px-4 py-2 bg-gray-200 text-left">Rol</th>
                         <th class="px-4 py-2 bg-gray-200 text-left">Nro de Teléfono</th>
-                        <th class="px-4 py-2 bg-gray-200 text-left">Acciones</th> <!-- Nueva columna para acciones -->
+                        <th class="px-4 py-2 bg-gray-200 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,10 +69,6 @@
                                     <a href="{{ route('users.delete', $user->id) }}" class="text-red-600 hover:underline mr-2">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                {{-- <form method="POST" class="inline">
-                                    <button type="submit" class="text-red-600 hover:underline"><i
-                                            class="fas fa-trash-alt"></i></button>
-                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -72,10 +79,3 @@
 </body>
 
 </html>
-
-{{-- <a href="{{ route('users.edit', $user->id) }}" class="text-blue-600 hover:underline mr-2"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:underline"><i class="fas fa-trash-alt"></i></button>
-                                </form> --}}

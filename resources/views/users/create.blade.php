@@ -12,7 +12,6 @@
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl text-center text-gray-800 mb-6"><i class="fas fa-user-plus mr-2"></i>Crear Nuevo Usuario</h1>
 
-        <!-- Mostrar mensaje de error si existe -->
         @if (session()->has('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Error:</strong>
