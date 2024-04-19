@@ -23,11 +23,15 @@
     </header>
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-semibold mb-4">Tabla de Usuarios</h1>
-        <div class="mb-4">
-            <a href="{{ route('users.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i
-                    class="fas fa-plus mr-2"></i>Nuevo Usuario</a>
-        </div>
+
+        @if (auth()->user()->role_id === 1)
+            <div class="mb-4">
+                <a href="{{ route('users.create') }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i
+                        class="fas fa-plus mr-2"></i>Nuevo Usuario</a>
+            </div>
+        @endif
+
         @if (session('success'))
             <div class="bg-green-200 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
                 <p class="font-bold">Éxito:</p>
@@ -51,7 +55,9 @@
                         <th class="px-4 py-2 bg-gray-200 text-left">Correo</th>
                         <th class="px-4 py-2 bg-gray-200 text-left">Rol</th>
                         <th class="px-4 py-2 bg-gray-200 text-left">Nro de Teléfono</th>
-                        <th class="px-4 py-2 bg-gray-200 text-left">Acciones</th>
+                        @if (auth()->user()->role_id === 1)
+                            <th class="px-4 py-2 bg-gray-200 text-left">Acciones</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -63,13 +69,16 @@
                             <td class="px-4 py-2">{{ $user->correo }}</td>
                             <td class="px-4 py-2">{{ $user->role->nombre }}</td>
                             <td class="px-4 py-2">{{ $user->telefono }}</td>
-                            <td class="px-4 py-2">
-                                <a href="{{ route('users.edit', $user->id) }}"
-                                    class="text-blue-600 hover:underline mr-2"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('users.delete', $user->id) }}" class="text-red-600 hover:underline mr-2">
+                            @if (auth()->user()->role_id === 1)
+                                <td class="px-4 py-2">
+                                    <a href="{{ route('users.edit', $user->id) }}"
+                                        class="text-blue-600 hover:underline mr-2"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('users.delete', $user->id) }}"
+                                        class="text-red-600 hover:underline mr-2">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                            </td>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
