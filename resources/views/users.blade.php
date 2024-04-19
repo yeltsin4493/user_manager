@@ -13,7 +13,7 @@
     <header class="bg-blue-500 text-white py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
             <div>
-                <span>BIENVENIDO {{ strtoupper(auth()->user()->nombre) }}</span>
+                <span>BIENVENIDO {{ strtoupper(auth()->user()->nombre) }} {{ strtoupper(auth()->user()->apellido) }}</span>
             </div>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
