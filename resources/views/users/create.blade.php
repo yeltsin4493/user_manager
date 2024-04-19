@@ -48,7 +48,7 @@
             </div>
             <div class="mb-4">
                 <label for="contraseña" class="block text-gray-700 font-bold mb-2">Contraseña:</label>
-                <input type="password" id="contraseña" name="contraseña" class="form-input w-full rounded-md shadow-sm">
+                <input type="password" id="password" name="password" class="form-input w-full rounded-md shadow-sm">
             </div>
             <div class="flex items-center justify-between">
                 <button type="submit"
